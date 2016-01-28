@@ -1,5 +1,6 @@
 package com.luckcheese.sadpalmeiras;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.refresh).setOnClickListener(this);
+        findViewById(R.id.share).setOnClickListener(this);
 
         loadBannerAd();
     }
@@ -58,8 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.refresh) {
-            setupView();
+        if (v.getId() == R.id.share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.luckcheese.sadpalmeiras&hl=en");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
         }
     }
 }

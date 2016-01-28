@@ -11,12 +11,12 @@
 
     <ImageButton
         style="@style/Widget.AppCompat.Button.Colored"
-        android:id="@+id/refresh"
+        android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_refresh"/>
+        android:src="@android:drawable/ic_menu_share"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -30,7 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/refresh"
+        android:layout_alignParentTop="true"
         android:layout_above="@id/adView"
         android:gravity="center_vertical"
         android:orientation="vertical">
