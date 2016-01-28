@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- End current session if app sleeps for a period of time -->
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <!--  The property id associated with this analytics tracker -->
+    <string name="ga_trackingId">UA-73029300-1</string>
+
+    <!-- Enable tracking of uncaught exception -->
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <!-- Automatic activities tracking-->
+    <bool name="ga_autoActivityTracking">true</bool>
+    <screenName name="com.luckcheese.sadpalmeiras.MainActivity">Main Page</screenName>
+</resources>
