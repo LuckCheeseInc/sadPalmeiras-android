@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.refresh).setOnClickListener(this);
+
+        loadBannerAd();
     }
 
     @Override
@@ -41,6 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dateString.append(",");
 
         return dateString.toString();
+    }
+
+    private void loadBannerAd() {
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     // ----- View.OnClickListener ---------------------------------------------
