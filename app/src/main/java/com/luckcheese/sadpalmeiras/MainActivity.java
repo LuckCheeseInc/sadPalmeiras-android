@@ -2,17 +2,20 @@ package com.luckcheese.sadpalmeiras;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.refresh).setOnClickListener(this);
     }
 
     @Override
@@ -38,5 +41,14 @@ public class MainActivity extends AppCompatActivity {
         dateString.append(",");
 
         return dateString.toString();
+    }
+
+    // ----- View.OnClickListener ---------------------------------------------
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.refresh) {
+            setupView();
+        }
     }
 }
