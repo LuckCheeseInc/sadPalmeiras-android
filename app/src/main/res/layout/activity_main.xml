@@ -27,66 +27,10 @@
         app:adSize="BANNER"
         app:adUnitId="@string/banner_ad_unit_id" />
 
-    <LinearLayout
+    <include
+        layout="@layout/main_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_above="@id/adView"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@android:color/black"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distance_vertical"
-            android:gravity="center"
-            android:text="@string/line1"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distance_vertical"
-            android:gravity="center"
-            tools:text="mm/dd/yyyy at hh:mm,"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distance_vertical"
-            android:gravity="center"
-            android:text="@string/line3"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:id="@+id/titlesCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distance_vertical"
-            android:gravity="center"
-            tools:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="70sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distance_vertical"
-            android:gravity="center"
-            android:text="@string/line5"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-    </LinearLayout>
+        android:layout_above="@id/adView"/>
 </RelativeLayout>
