@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.luckcheese.sadpalmeiras&hl=en");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_link));
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
         }
