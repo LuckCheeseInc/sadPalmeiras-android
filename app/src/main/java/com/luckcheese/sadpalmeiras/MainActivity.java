@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             protected Void doInBackground(Void... params) {
-                long endTIme = System.currentTimeMillis() + rand.nextInt(3000) + 2000;
+                long endTIme = System.currentTimeMillis() + 2000;
                 while (System.currentTimeMillis() < endTIme) {
                     publishProgress(new Void[1]);
                     try {
