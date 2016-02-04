@@ -22,6 +22,7 @@
             android:background="@android:color/black"/>
 
         <TextView
+            android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/distance_vertical"
@@ -41,6 +42,7 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/line3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/distance_vertical"
@@ -60,6 +62,7 @@
             android:textSize="70sp"/>
 
         <TextView
+            android:id="@+id/line5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/distance_vertical"
