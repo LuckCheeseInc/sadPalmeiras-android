@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -40,7 +42,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateView() {
         new AsyncTask<Void, Void, Void>() {
 
+            private int mNumberToShow;
             Random rand = new Random();
+            Animation in = new AlphaAnimation(0.5f, 1.0f);
+            Animation out = new AlphaAnimation(1.0f, 0.5f);
+            {
+                out.setDuration(10);
+                in.setDuration(10);
+
+                out.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        mTitlesCountView.setText(String.valueOf(mNumberToShow));
+                        mTitlesCountView.startAnimation(in);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+            }
 
             @Override
             protected void onPreExecute() {
@@ -53,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             protected Void doInBackground(Void... params) {
                 long endTIme = System.currentTimeMillis() + rand.nextInt(3000) + 2000;
                 while (System.currentTimeMillis() < endTIme) {
+                    publishProgress(new Void[1]);
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(40);
                     } catch (InterruptedException e) {
                     }
-                    publishProgress(new Void[1]);
                 }
                 return null;
             }
@@ -66,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             protected void onProgressUpdate(Void... values) {
                 super.onProgressUpdate(values);
 
-                int numberToShow = rand.nextInt(9);
-                mTitlesCountView.setText(String.valueOf(numberToShow));
+                mNumberToShow = rand.nextInt(9);
+                mTitlesCountView.startAnimation(out);
             }
 
             @Override
@@ -76,25 +103,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showLines(true);
                 showResult(new Date(), 0);
             }
+
+            private void showLines(boolean show) {
+                final View line1View = findViewById(R.id.line1);
+                final View line3View = findViewById(R.id.line3);
+                final View line5View = findViewById(R.id.line5);
+                if (show) {
+                    Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
+                    lineIn.setDuration(200);
+                    line1View.setAnimation(lineIn);
+                    line3View.setAnimation(lineIn);
+                    line5View.setAnimation(lineIn);
+                    lineIn.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            line1View.setVisibility(View.VISIBLE);
+                            line3View.setVisibility(View.VISIBLE);
+                            line5View.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                    lineIn.startNow();
+                }
+                else {
+                    line1View.setVisibility(View.INVISIBLE);
+                    line3View.setVisibility(View.INVISIBLE);
+                    line5View.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            private void showResult(Date date, int titlesCount) {
+                mTitlesCountView.setText(String.valueOf(titlesCount));
+                mDateView.setText(getDateFormatted(date));
+            }
         }.execute(new Void[1]);
-    }
-
-    private void showLines(boolean show) {
-        if (show) {
-            findViewById(R.id.line1).setVisibility(View.VISIBLE);
-            findViewById(R.id.line3).setVisibility(View.VISIBLE);
-            findViewById(R.id.line5).setVisibility(View.VISIBLE);
-        }
-        else {
-            findViewById(R.id.line1).setVisibility(View.INVISIBLE);
-            findViewById(R.id.line3).setVisibility(View.INVISIBLE);
-            findViewById(R.id.line5).setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private void showResult(Date date, int titlesCount) {
-        mTitlesCountView.setText(String.valueOf(titlesCount));
-        mDateView.setText(getDateFormatted(date));
     }
 
     private String getDateFormatted(Date date) {
