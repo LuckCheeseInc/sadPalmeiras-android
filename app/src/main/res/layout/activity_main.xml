@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_margin"
     android:background="@color/colorPrimary"
     tools:context="com.luckcheese.sadpalmeiras.MainActivity">
 
@@ -16,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/activity_margin"
         android:src="@android:drawable/ic_menu_share"/>
 
     <com.google.android.gms.ads.AdView
