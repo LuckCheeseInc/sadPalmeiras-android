@@ -24,7 +24,6 @@
         android:layout_above="@id/adView"/>
 
     <ImageButton
-        style="@style/Widget.AppCompat.Button.Colored"
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
