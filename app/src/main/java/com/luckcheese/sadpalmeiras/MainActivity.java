@@ -166,13 +166,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void loadBannerAd() {
-        AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest.Builder builder = new AdRequest.Builder();
         if (BuildConfig.DEBUG) {
             builder = builder.addTestDevice("66E484AD30BFD2BC209FA8559D395842");
         }
         AdRequest adRequest = builder.build();
-        mAdView.loadAd(adRequest);
+
+        ((AdView) findViewById(R.id.adView)).loadAd(adRequest);
     }
 
     // ----- View.OnClickListener ---------------------------------------------
