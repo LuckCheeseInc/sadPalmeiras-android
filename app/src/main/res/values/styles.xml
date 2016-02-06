@@ -1,20 +1,26 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="background">@color/colorPrimary</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentOverlay">@null</item>
 
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-        <item name="android:imageButtonStyle">@style/Widget.AppCompat.Button.Colored</item>
-
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="imageButtonStyle">@style/ButtonStyle</item>
+        <item name="android:imageButtonStyle">@style/ButtonStyle</item>
     </style>
+
+    <style name="AppTheme" parent="BaseTheme"/>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme" >
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored" />
 
 </resources>
