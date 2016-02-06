@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         app:adSize="BANNER"
-        app:adUnitId="@string/banner_ad_unit_id" />
+        app:adUnitId="@string/home_banner_unit_id" />
 
     <include
         layout="@layout/main_content"
