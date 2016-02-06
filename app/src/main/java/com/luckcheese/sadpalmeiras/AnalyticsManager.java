@@ -3,6 +3,7 @@ package com.luckcheese.sadpalmeiras;
 import android.content.Context;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 public final class AnalyticsManager {
@@ -19,11 +20,16 @@ public final class AnalyticsManager {
             googleAnalytics.setDryRun(false);
         }
 
-        tracker = googleAnalytics.newTracker(R.xml.app_tracker);
+        tracker = googleAnalytics.newTracker(R.xml.global_tracker);
     }
 
     public synchronized Tracker get() {
         return tracker;
+    }
+
+    public void trackPageView(String pageName) {
+        tracker.setScreenName(pageName);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     // ----- Singleton Pattern ------------------------------------------------

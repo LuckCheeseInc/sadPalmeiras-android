@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+        AnalyticsManager.getInstance().trackPageView("Home");
         updateView();
     }
 
