@@ -7,4 +7,5 @@
     <string name="line5">títulos mundiais</string>
 
     <string name="computing_titles">Calculando</string>
+    <string name="google_play_services_unsupported">Aparelho não suporta Google Play Services e pode não funcionar corretamente</string>
 </resources>

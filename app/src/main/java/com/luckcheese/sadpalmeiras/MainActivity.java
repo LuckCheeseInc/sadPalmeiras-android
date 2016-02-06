@@ -29,14 +29,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTitlesCountView = (TextView) findViewById(R.id.titlesCount);
         mDateView = (TextView) findViewById(R.id.date);
         findViewById(R.id.share).setOnClickListener(this);
-
-        loadBannerAd();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        AnalyticsManager.getInstance().trackPageView("Home");
+
+        if (GooglePlayServiceHelper.check(this)) {
+            AnalyticsManager.getInstance().trackPageView("Home");
+            loadBannerAd();
+        }
+
         updateView();
     }
 
