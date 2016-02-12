@@ -112,13 +112,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             private void showLines(boolean show) {
                 final View line1View = findViewById(R.id.line1);
                 final View line3View = findViewById(R.id.line3);
-                final View line5View = findViewById(R.id.line5);
+                final View refreshBtn = findViewById(R.id.refresh);
                 if (show) {
                     Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
                     lineIn.setDuration(200);
                     line1View.setAnimation(lineIn);
                     line3View.setAnimation(lineIn);
-                    line5View.setAnimation(lineIn);
+                    refreshBtn.setAnimation(lineIn);
                     lineIn.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         public void onAnimationEnd(Animation animation) {
                             line1View.setVisibility(View.VISIBLE);
                             line3View.setVisibility(View.VISIBLE);
-                            line5View.setVisibility(View.VISIBLE);
+                            refreshBtn.setVisibility(View.VISIBLE);
                         }
 
                         @Override
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else {
                     line1View.setVisibility(View.INVISIBLE);
                     line3View.setVisibility(View.INVISIBLE);
-                    line5View.setVisibility(View.INVISIBLE);
+                    refreshBtn.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -154,16 +154,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private String getDateFormatted(Date date) {
-        StringBuilder dateString = new StringBuilder();
+        String dateS = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
+        String timeS = DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
 
-        dateString.append(DateFormat.getDateInstance(DateFormat.SHORT).format(date));
-        dateString.append(" ");
-        dateString.append(getString(R.string.date_preposition));
-        dateString.append(" ");
-        dateString.append(DateFormat.getTimeInstance(DateFormat.SHORT).format(date));
-        dateString.append(",");
-
-        return dateString.toString();
+        return getString(R.string.date_line, dateS, timeS);
     }
 
     private void loadBannerAd() {

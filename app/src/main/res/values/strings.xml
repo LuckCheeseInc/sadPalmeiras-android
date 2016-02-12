@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">Chora Porco</string>
 
-    <string name="line1">Pelo que verificamos em</string>
-    <string name="date_preposition">às</string>
-    <string name="line3">o Parmera tem</string>
-    <string name="line5">títulos mundiais</string>
+    <string name="line1">Quantos mundiais o Parmera possui?</string>
+    <string name="date_line">Atualizado em %1$s - %2$s</string>
+    <string name="line3">Títulos mundiais</string>
 
     <string name="computing_titles">Calculando</string>
     <string name="google_play_services_unsupported">Aparelho não suporta Google Play Services e pode não funcionar corretamente</string>
