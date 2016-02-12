@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTitlesCountView = (TextView) findViewById(R.id.titlesCount);
         mDateView = (TextView) findViewById(R.id.date);
         findViewById(R.id.share).setOnClickListener(this);
+        findViewById(R.id.refresh).setOnClickListener(this);
     }
 
     @Override
@@ -179,12 +180,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.share) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_link));
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
+        int viewId = v.getId();
+        switch (viewId) {
+            case R.id.share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_link));
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
+
+            case R.id.refresh:
+                updateView();
+                break;
         }
     }
 }
