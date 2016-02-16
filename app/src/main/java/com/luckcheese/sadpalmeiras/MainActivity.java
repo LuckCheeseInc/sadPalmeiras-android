@@ -14,6 +14,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -154,8 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private String getDateFormatted(Date date) {
-        String dateS = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
-        String timeS = DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
+        Locale locale = new Locale("pt", "BR");
+        String dateS = DateFormat.getDateInstance(DateFormat.SHORT, locale).format(date);
+        String timeS = DateFormat.getTimeInstance(DateFormat.SHORT, locale).format(date);
 
         return getString(R.string.date_line, dateS, timeS);
     }
