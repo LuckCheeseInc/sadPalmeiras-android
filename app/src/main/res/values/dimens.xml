@@ -1,4 +1,3 @@
 <resources>
     <dimen name="activity_margin">8dp</dimen>
-    <dimen name="distance_vertical">16dp</dimen>
 </resources>

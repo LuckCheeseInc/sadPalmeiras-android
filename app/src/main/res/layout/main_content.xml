@@ -20,17 +20,17 @@
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distance_vertical"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/line1"
         android:textColor="@android:color/white"
-        android:textSize="20sp"/>
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/titlesCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distance_vertical"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         tools:text="0"
         android:textColor="@android:color/white"
@@ -44,18 +44,18 @@
         android:gravity="center"
         android:text="@string/line3"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/distance_vertical"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         tools:text="mm/dd/yyyy at hh:mm,"
         android:textColor="@android:color/white"
-        android:textSize="20sp"/>
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/refresh"
