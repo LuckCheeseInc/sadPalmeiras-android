@@ -10,8 +10,8 @@
 
         <item name="buttonStyle">@style/ButtonStyle</item>
         <item name="android:buttonStyle">@style/ButtonStyle</item>
-        <item name="imageButtonStyle">@style/ButtonStyle</item>
-        <item name="android:imageButtonStyle">@style/ButtonStyle</item>
+        <item name="imageButtonStyle">@style/ImageButtonStyle</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonStyle</item>
     </style>
 
     <style name="AppTheme" parent="BaseTheme"/>
@@ -21,6 +21,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored" />
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored" >
+
+    </style>
+
+    <style name="ImageButtonStyle" parent="Widget.AppCompat.Button.Colored" >
+        <item name="android:background">@drawable/circular_button_bg</item>
+        <item name="android:padding">8dp</item>
+    </style>
 
 </resources>
