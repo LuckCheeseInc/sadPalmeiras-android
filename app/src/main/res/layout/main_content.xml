@@ -10,10 +10,11 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
-        android:background="@android:color/black"/>
+        android:src="@drawable/sad_pig"/>
 
     <TextView
         android:id="@+id/line1"
@@ -45,11 +46,6 @@
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/date"
