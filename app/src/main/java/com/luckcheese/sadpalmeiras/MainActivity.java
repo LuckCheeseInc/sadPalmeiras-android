@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                showLines(false);
+                setComputing(true);
                 mDateView.setText(R.string.computing_titles);
             }
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                showLines(true);
+                setComputing(false);
                 showResult(new Date(), 0);
             }
 
@@ -117,11 +117,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }.execute(new Void[1]);
     }
 
-    private void showLines(boolean show) {
+    private void setComputing(boolean computing) {
         final View line1View = findViewById(R.id.question);
         final View line3View = findViewById(R.id.titles);
         final View refreshBtn = findViewById(R.id.refresh);
-        if (show) {
+        if (computing) {
+            line1View.setVisibility(View.INVISIBLE);
+            line3View.setVisibility(View.INVISIBLE);
+            refreshBtn.setVisibility(View.INVISIBLE);
+        }
+        else {
             Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
             lineIn.setDuration(200);
             line1View.setAnimation(lineIn);
@@ -146,11 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
             lineIn.startNow();
-        }
-        else {
-            line1View.setVisibility(View.INVISIBLE);
-            line3View.setVisibility(View.INVISIBLE);
-            refreshBtn.setVisibility(View.INVISIBLE);
         }
     }
 
