@@ -2,8 +2,8 @@ package com.luckcheese.sadpalmeiras;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -21,16 +21,11 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView mTitlesCountView;
-    private TextView mDateView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTitlesCountView = (TextView) findViewById(R.id.titlesCount);
-        mDateView = (TextView) findViewById(R.id.date);
         findViewById(R.id.share).setOnClickListener(this);
         findViewById(R.id.refresh).setOnClickListener(this);
     }
@@ -50,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateView() {
         new AsyncTask<Void, Void, Void>() {
 
+            TextView loadingView = (TextView) findViewById(R.id.titlesCountLoading);
+
             private int mNumberToShow;
             Random rand = new Random();
             Animation in = new AlphaAnimation(0.5f, 1.0f);
@@ -66,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        mTitlesCountView.setText(String.valueOf(mNumberToShow));
-                        mTitlesCountView.startAnimation(in);
+                        loadingView.setText(String.valueOf(mNumberToShow));
+                        loadingView.startAnimation(in);
                     }
 
                     @Override
@@ -81,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             protected void onPreExecute() {
                 super.onPreExecute();
                 setComputing(true);
-                mDateView.setText(R.string.computing_titles);
+                loadingView.setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.date)).setText(R.string.computing_titles);
             }
 
             @Override
@@ -102,12 +100,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 super.onProgressUpdate(values);
 
                 mNumberToShow = rand.nextInt(9);
-                mTitlesCountView.startAnimation(out);
+                loadingView.clearAnimation();
+                loadingView.startAnimation(out);
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
+                loadingView.setVisibility(View.INVISIBLE);
                 setComputing(false);
                 showResult(new Date(), 0);
             }
@@ -115,21 +115,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setComputing(boolean computing) {
-        final List<View> views = Arrays.asList(
+        final List<View> viewsThatHideDuringLoading = Arrays.asList(
                 findViewById(R.id.share),
                 findViewById(R.id.logo),
                 findViewById(R.id.titles),
-                findViewById(R.id.refresh));
+                findViewById(R.id.refresh),
+                findViewById(R.id.titlesCount));
 
         if (computing) {
-            for (View v : views) {
+            for (View v : viewsThatHideDuringLoading) {
                 v.setVisibility(View.INVISIBLE);
             }
         }
         else {
             Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
             lineIn.setDuration(200);
-            for (View v : views) {
+            for (View v : viewsThatHideDuringLoading) {
                 v.setAnimation(lineIn);
             }
 
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    for (View v : views) {
+                    for (View v : viewsThatHideDuringLoading) {
                         v.setVisibility(View.VISIBLE);
                     }
                 }
@@ -156,8 +157,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showResult(Date date, int titlesCount) {
-        mTitlesCountView.setText(String.valueOf(titlesCount));
-        mDateView.setText(getDateFormatted(date));
+        ((TextView) findViewById(R.id.titlesCount)).setText(String.valueOf(titlesCount));
+        ((TextView) findViewById(R.id.date)).setText(getDateFormatted(date));
     }
 
     private String getDateFormatted(Date date) {

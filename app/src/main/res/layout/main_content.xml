@@ -26,16 +26,32 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"/>
 
-    <TextView
-        android:id="@+id/titlesCount"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        tools:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="80sp"
-        android:textStyle="bold"/>
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/titlesCountLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="invisible"
+            tools:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="80sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/titlesCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="80sp"
+            android:textStyle="bold"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/titles"
