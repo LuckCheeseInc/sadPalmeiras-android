@@ -111,11 +111,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setComputing(false);
                 showResult(new Date(), 0);
             }
-
-            private void showResult(Date date, int titlesCount) {
-                mTitlesCountView.setText(String.valueOf(titlesCount));
-                mDateView.setText(getDateFormatted(date));
-            }
         }.execute(new Void[1]);
     }
 
@@ -158,6 +153,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
             lineIn.startNow();
         }
+    }
+
+    private void showResult(Date date, int titlesCount) {
+        mTitlesCountView.setText(String.valueOf(titlesCount));
+        mDateView.setText(getDateFormatted(date));
     }
 
     private String getDateFormatted(Date date) {
