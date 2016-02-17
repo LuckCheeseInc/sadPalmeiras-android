@@ -118,19 +118,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setComputing(boolean computing) {
-        final View line1View = findViewById(R.id.question);
-        final View line3View = findViewById(R.id.titles);
+        final View logoView = findViewById(R.id.logo);
+        final View titlesView = findViewById(R.id.titles);
         final View refreshBtn = findViewById(R.id.refresh);
         if (computing) {
-            line1View.setVisibility(View.INVISIBLE);
-            line3View.setVisibility(View.INVISIBLE);
+            logoView.setVisibility(View.INVISIBLE);
+            titlesView.setVisibility(View.INVISIBLE);
             refreshBtn.setVisibility(View.INVISIBLE);
         }
         else {
             Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
             lineIn.setDuration(200);
-            line1View.setAnimation(lineIn);
-            line3View.setAnimation(lineIn);
+            logoView.setAnimation(lineIn);
+            titlesView.setAnimation(lineIn);
             refreshBtn.setAnimation(lineIn);
             lineIn.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    line1View.setVisibility(View.VISIBLE);
-                    line3View.setVisibility(View.VISIBLE);
+                    logoView.setVisibility(View.VISIBLE);
+                    titlesView.setVisibility(View.VISIBLE);
                     refreshBtn.setVisibility(View.VISIBLE);
                 }
 
