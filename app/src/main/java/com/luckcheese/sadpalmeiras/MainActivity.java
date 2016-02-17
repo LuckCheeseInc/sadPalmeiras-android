@@ -118,10 +118,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setComputing(boolean computing) {
+        final View shareView = findViewById(R.id.share);
         final View logoView = findViewById(R.id.logo);
         final View titlesView = findViewById(R.id.titles);
         final View refreshBtn = findViewById(R.id.refresh);
         if (computing) {
+            shareView.setVisibility(View.INVISIBLE);
             logoView.setVisibility(View.INVISIBLE);
             titlesView.setVisibility(View.INVISIBLE);
             refreshBtn.setVisibility(View.INVISIBLE);
@@ -129,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else {
             Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
             lineIn.setDuration(200);
+            shareView.setAnimation(lineIn);
             logoView.setAnimation(lineIn);
             titlesView.setAnimation(lineIn);
             refreshBtn.setAnimation(lineIn);
@@ -140,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
+                    shareView.setVisibility(View.VISIBLE);
                     logoView.setVisibility(View.VISIBLE);
                     titlesView.setVisibility(View.VISIBLE);
                     refreshBtn.setVisibility(View.VISIBLE);
