@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             private void showLines(boolean show) {
-                final View line1View = findViewById(R.id.line1);
-                final View line3View = findViewById(R.id.line3);
+                final View line1View = findViewById(R.id.question);
+                final View line3View = findViewById(R.id.titles);
                 final View refreshBtn = findViewById(R.id.refresh);
                 if (show) {
                     Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
