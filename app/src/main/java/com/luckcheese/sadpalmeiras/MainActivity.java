@@ -110,48 +110,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showResult(new Date(), 0);
             }
 
-            private void showLines(boolean show) {
-                final View line1View = findViewById(R.id.question);
-                final View line3View = findViewById(R.id.titles);
-                final View refreshBtn = findViewById(R.id.refresh);
-                if (show) {
-                    Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
-                    lineIn.setDuration(200);
-                    line1View.setAnimation(lineIn);
-                    line3View.setAnimation(lineIn);
-                    refreshBtn.setAnimation(lineIn);
-                    lineIn.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            line1View.setVisibility(View.VISIBLE);
-                            line3View.setVisibility(View.VISIBLE);
-                            refreshBtn.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
-                    lineIn.startNow();
-                }
-                else {
-                    line1View.setVisibility(View.INVISIBLE);
-                    line3View.setVisibility(View.INVISIBLE);
-                    refreshBtn.setVisibility(View.INVISIBLE);
-                }
-            }
-
             private void showResult(Date date, int titlesCount) {
                 mTitlesCountView.setText(String.valueOf(titlesCount));
                 mDateView.setText(getDateFormatted(date));
             }
         }.execute(new Void[1]);
+    }
+
+    private void showLines(boolean show) {
+        final View line1View = findViewById(R.id.question);
+        final View line3View = findViewById(R.id.titles);
+        final View refreshBtn = findViewById(R.id.refresh);
+        if (show) {
+            Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
+            lineIn.setDuration(200);
+            line1View.setAnimation(lineIn);
+            line3View.setAnimation(lineIn);
+            refreshBtn.setAnimation(lineIn);
+            lineIn.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    line1View.setVisibility(View.VISIBLE);
+                    line3View.setVisibility(View.VISIBLE);
+                    refreshBtn.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            lineIn.startNow();
+        }
+        else {
+            line1View.setVisibility(View.INVISIBLE);
+            line3View.setVisibility(View.INVISIBLE);
+            refreshBtn.setVisibility(View.INVISIBLE);
+        }
     }
 
     private String getDateFormatted(Date date) {
