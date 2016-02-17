@@ -13,7 +13,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -118,23 +120,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setComputing(boolean computing) {
-        final View shareView = findViewById(R.id.share);
-        final View logoView = findViewById(R.id.logo);
-        final View titlesView = findViewById(R.id.titles);
-        final View refreshBtn = findViewById(R.id.refresh);
+        final List<View> views = Arrays.asList(
+                findViewById(R.id.share),
+                findViewById(R.id.logo),
+                findViewById(R.id.titles),
+                findViewById(R.id.refresh));
+
         if (computing) {
-            shareView.setVisibility(View.INVISIBLE);
-            logoView.setVisibility(View.INVISIBLE);
-            titlesView.setVisibility(View.INVISIBLE);
-            refreshBtn.setVisibility(View.INVISIBLE);
+            for (View v : views) {
+                v.setVisibility(View.INVISIBLE);
+            }
         }
         else {
             Animation lineIn = new AlphaAnimation(0.0f, 1.0f);
             lineIn.setDuration(200);
-            shareView.setAnimation(lineIn);
-            logoView.setAnimation(lineIn);
-            titlesView.setAnimation(lineIn);
-            refreshBtn.setAnimation(lineIn);
+            for (View v : views) {
+                v.setAnimation(lineIn);
+            }
+
             lineIn.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -143,10 +146,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    shareView.setVisibility(View.VISIBLE);
-                    logoView.setVisibility(View.VISIBLE);
-                    titlesView.setVisibility(View.VISIBLE);
-                    refreshBtn.setVisibility(View.VISIBLE);
+                    for (View v : views) {
+                        v.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override
