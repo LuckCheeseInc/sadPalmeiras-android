@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int viewId = v.getId();
         switch (viewId) {
             case R.id.share:
+                AnalyticsManager.getInstance().trackEvent("main", "share");
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_link));
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.refresh:
+                AnalyticsManager.getInstance().trackEvent("main", "refresh");
                 updateView();
                 break;
         }

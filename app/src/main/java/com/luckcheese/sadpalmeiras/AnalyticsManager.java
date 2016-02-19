@@ -32,6 +32,13 @@ public final class AnalyticsManager {
         tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
+    public void trackEvent(String category, String action) {
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory(category)
+                .setAction(action)
+                .build());
+    }
+
     // ----- Singleton Pattern ------------------------------------------------
 
     private static AnalyticsManager sInstance;
