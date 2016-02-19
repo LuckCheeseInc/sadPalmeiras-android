@@ -1,8 +1,9 @@
 package com.luckcheese.sadpalmeiras;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -11,14 +12,13 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.luckcheese.sadpalmeiras.customViews.SmoothChangeTextView;
+import com.luckcheese.sadpalmeiras.customViews.WaitLoadingTextView;
 
 import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,48 +44,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateView() {
-        new AsyncTask<Void, Void, Void>() {
+        setComputing(true);
+        ((TextView) findViewById(R.id.date)).setText(R.string.computing_titles);
 
-            SmoothChangeTextView loadingView = (SmoothChangeTextView) findViewById(R.id.titlesCountLoading);
-
-            Random rand = new Random();
-
+        final WaitLoadingTextView loadingView = (WaitLoadingTextView) findViewById(R.id.titlesCountLoading);
+        loadingView.start();
+        new Handler(new Handler.Callback() {
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                setComputing(true);
-                loadingView.setVisibility(View.VISIBLE);
-                ((TextView) findViewById(R.id.date)).setText(R.string.computing_titles);
-            }
+            public boolean handleMessage(Message msg) {
+                loadingView.stop();
 
-            @Override
-            protected Void doInBackground(Void... params) {
-                long endTIme = System.currentTimeMillis() + 2000;
-                while (System.currentTimeMillis() < endTIme) {
-                    publishProgress(new Void[1]);
-                    try {
-                        Thread.sleep(40);
-                    } catch (InterruptedException e) {
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            protected void onProgressUpdate(Void... values) {
-                super.onProgressUpdate(values);
-
-                loadingView.changeText(String.valueOf(rand.nextInt(9)));
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                loadingView.setVisibility(View.INVISIBLE);
                 setComputing(false);
                 showResult(new Date(), 0);
+                return true;
             }
-        }.execute(new Void[1]);
+        }).sendEmptyMessageDelayed(0, 2000);
     }
 
     private void setComputing(boolean computing) {

@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 
-        <com.luckcheese.sadpalmeiras.customViews.SmoothChangeTextView
+        <com.luckcheese.sadpalmeiras.customViews.WaitLoadingTextView
             android:id="@+id/titlesCountLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
