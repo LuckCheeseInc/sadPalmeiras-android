@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.luckcheese.sadpalmeiras.customViews.SmoothChangeTextView;
 
 import java.text.DateFormat;
 import java.util.Arrays;
@@ -45,34 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateView() {
         new AsyncTask<Void, Void, Void>() {
 
-            TextView loadingView = (TextView) findViewById(R.id.titlesCountLoading);
+            SmoothChangeTextView loadingView = (SmoothChangeTextView) findViewById(R.id.titlesCountLoading);
 
-            private int mNumberToShow;
             Random rand = new Random();
-            Animation in = new AlphaAnimation(0.5f, 1.0f);
-            Animation out = new AlphaAnimation(1.0f, 0.5f);
-            {
-                out.setDuration(10);
-                in.setDuration(10);
-
-                out.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        loadingView.setText(String.valueOf(mNumberToShow));
-                        loadingView.startAnimation(in);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-            }
 
             @Override
             protected void onPreExecute() {
@@ -99,9 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             protected void onProgressUpdate(Void... values) {
                 super.onProgressUpdate(values);
 
-                mNumberToShow = rand.nextInt(9);
-                loadingView.clearAnimation();
-                loadingView.startAnimation(out);
+                loadingView.changeText(String.valueOf(rand.nextInt(9)));
             }
 
             @Override
